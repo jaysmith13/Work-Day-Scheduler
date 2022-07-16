@@ -55,7 +55,78 @@ $('.col-10').on('click', 'p', function() {
     var id = "#t-"+schTime;
     var tempBg = " ";
 
-    if 
-})
+    if (parseInt(hourOfDay) === parseInt(schTime)){
+        tempBg += bgCurrent;
+    }
+    else if (parseInt(schTime) < parseInt(hourOfDay)){
+        tempBg += bgBefore;
+    } else {
+        tempBg += bgAfter;
+    }
 
+    var textInput = $('<textarea>')
+    .addClass('form-control text-dark' + tempBg)
+    .val(text);
 
+    $(this).replaceWith(textInput);
+    textInput.trigger('focus');
+});
+
+var functionBlur =function (){
+    var text = $('.form-control')
+    .val()
+    .trim();
+
+ var eventP = $('<p>')
+ .addClass('h-100 w-100 mt-4')
+ .text(text);
+
+ $('.form-control').replaceWith(eventP);
+}
+
+var loadSchedule = function(){
+    if (list){
+        for(var i = 9; i < 18; i++){
+            var index = "#t-"+ i;
+            index = index.trim();
+            var attr = $(index).attr('atr');
+            var elementP =$(index).children('.col-10').children('p');
+
+            for(j=0; j<list.length; j++)
+        {
+            if(parseInt(list[j].hourSch) === parseInt(attr)){
+                elementP.text(list[j].txtSch)
+                }
+            }
+        }
+    }
+};
+
+$('.btn').on('click', function(event){
+    event.preventDefault();
+
+    var schTime = $(this).attr('atr');
+    var id = '#t-'+schTime;
+    var mostParent = $(this).parents(id);
+    var indexText = mostParent.children('.col-10').children('.form-control');
+
+    if(inputText.val())
+    {
+        var objWorkSchedule ={
+            txtSch: indputText.val().trim(),
+            hourSch:schTime
+        };
+
+        list.push(objWorkSchedule);
+        localStorage.setItem('daySch',JSON.stringify(list));
+        functionBlur();
+
+        loadSchedule();
+}
+else
+{
+    alert('You can not save and empty event');
+}
+});
+
+start();
