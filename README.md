@@ -6,3 +6,9 @@
  
 
 Site URL https://jaysmith13.github.io/Work-Day-Scheduler/
+
+## Screenshot
+
+## Credits
+
+I used source code provided by the university and a work day demo by Jun Park on Youtube.
