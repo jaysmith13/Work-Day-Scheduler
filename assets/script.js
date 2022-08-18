@@ -41,7 +41,7 @@ $(document).ready(function () {
             if (RowTime < timeNow) {
                 $(this).removeClass("later");
                 $(this).removeClass("present");
-                $(this).addClass("past");
+                $(this).addClass("previous");
             }
             else if (RowTime === timeNow) {
                 $(this).removeClass("previous");
@@ -49,7 +49,7 @@ $(document).ready(function () {
                 $(this).addClass("current");
             }
             else {
-                $(this).removeClass("current");
+                $(this).removeClass("present");
                 $(this).removeClass("previous");
                 $(this).addClass("later");
 
